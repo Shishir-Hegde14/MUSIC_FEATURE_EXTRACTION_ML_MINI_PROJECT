@@ -1,8 +1,0 @@
-batch_size,dev_accuracy,source_notebook
-16,0.547,abalation.ipynb
-32,0.54,abalation.ipynb
-64,0.527,abalation.ipynb
-128,0.499,abalation.ipynb
-256,0.461,abalation.ipynb
-512,0.431,abalation.ipynb
-1024,0.406,abalation.ipynb
