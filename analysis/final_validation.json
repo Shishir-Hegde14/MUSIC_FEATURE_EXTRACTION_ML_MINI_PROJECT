@@ -1,0 +1,13 @@
+{
+  "notebook_schema_valid": true,
+  "code_cells": 19,
+  "executed_code_cells": 19,
+  "notebook_errors": 0,
+  "main_metrics_rows": 30,
+  "single_model_test_correct": 636,
+  "ensemble_test_correct": 658,
+  "test_examples": 1000,
+  "paper_figures_and_sanity_plot": 7,
+  "original_notebooks_preserved": true,
+  "numerical_validation": true
+}

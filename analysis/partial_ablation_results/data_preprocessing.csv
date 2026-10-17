@@ -1,0 +1,10 @@
+preprocessing,selection,dev_accuracy,source_notebook
+resample20k,random_2000_per_genre,0.505,abalation.ipynb
+resample20k,first20_per_song,0.521,abalation.ipynb
+resample20k,even20_per_song,0.519,abalation.ipynb
+native_crop20k,random_2000_per_genre,0.493,abalation.ipynb
+native_crop20k,first20_per_song,0.522,abalation.ipynb
+native_crop20k,even20_per_song,0.521,abalation.ipynb
+native_adaptive500,random_2000_per_genre,0.503,abalation.ipynb
+native_adaptive500,first20_per_song,0.52,abalation.ipynb
+native_adaptive500,even20_per_song,0.52,abalation.ipynb

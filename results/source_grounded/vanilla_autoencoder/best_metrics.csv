@@ -1,0 +1,4 @@
+experiment,checkpoint,split,n,loss,mse,cross_entropy
+vanilla_autoencoder,best,train,6000,0.01136267505089442,0.01136267505089442,0.0
+vanilla_autoencoder,best,dev,1000,0.011095774360001087,0.011095774360001087,0.0
+vanilla_autoencoder,best,test,1000,0.011259868741035461,0.011259868741035461,0.0

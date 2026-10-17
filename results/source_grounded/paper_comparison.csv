@@ -1,0 +1,3 @@
+model,paper_train,paper_dev,paper_test,dev,test,train,test_difference_percentage_points
+baseline,0.52,0.381,0.364,0.415,0.415,0.5235,5.099999999999999
+paper_architecture_repository_loss,0.949,0.641,0.653,0.639,0.636,0.9501666666666667,-1.7000000000000015

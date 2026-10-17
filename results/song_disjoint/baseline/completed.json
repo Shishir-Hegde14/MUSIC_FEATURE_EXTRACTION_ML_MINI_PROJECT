@@ -1,0 +1,22 @@
+{
+  "config": {
+    "name": "baseline",
+    "kind": "baseline",
+    "epochs": 200,
+    "keep_probability": 0.9,
+    "objective": "repository",
+    "seed": 42,
+    "learning_rate": 0.0001,
+    "batch_size": 512,
+    "shuffle_each_epoch": false
+  },
+  "data_sha256": "cec0ca867de0f6281b9fa38df3a7ae9120e6d3c234ef1d3c33befaecaadb269e",
+  "split_sha256": "97546300f6c3c1aeb6bb61e6768f8daaffba5c5d6085d535cd24582355f06f0e",
+  "source_commit": "00b1802e24d1ab6fb3135b24a44976a51033ed24",
+  "implementation_sha256": "4b1853593bce0fa1a05f6a2b10eaf3b46d018ce089dc2c58f061347660ac11b2",
+  "torch": "2.11.0+cu128",
+  "best_epoch": 86,
+  "best_dev_score": 0.444,
+  "elapsed_seconds": 10.976738299999852,
+  "test_used_for_selection": false
+}

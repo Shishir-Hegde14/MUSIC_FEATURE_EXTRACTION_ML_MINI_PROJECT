@@ -1,0 +1,6 @@
+{
+  "sampled_test_examples": 16,
+  "nonzero_reconstructed_values": 0,
+  "test_reconstruction_mse": 0.011259868741035461,
+  "zero_predictor_test_mse": 0.011259868741035461
+}

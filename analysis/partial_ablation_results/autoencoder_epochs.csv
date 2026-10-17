@@ -1,0 +1,8 @@
+epochs,probe_dev_accuracy,dev_reconstruction_loss,source_notebook
+25,0.586,4.649274,abalation.ipynb
+50,0.593,4.511746,abalation.ipynb
+100,0.602,4.453016,abalation.ipynb
+200,0.596,4.53756,abalation.ipynb
+300,0.596,4.691164,abalation.ipynb
+500,0.596,4.991799,abalation.ipynb
+750,0.583,5.312496,abalation.ipynb

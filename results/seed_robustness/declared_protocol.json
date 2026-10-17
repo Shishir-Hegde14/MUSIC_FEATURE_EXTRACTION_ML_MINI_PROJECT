@@ -1,0 +1,12 @@
+{
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "split_seed": 42,
+  "epochs": 500,
+  "keep_probability": 0.9,
+  "objective": "repository",
+  "purpose": "Report every seed, never choose a seed using test accuracy."
+}

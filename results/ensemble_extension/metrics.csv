@@ -1,0 +1,4 @@
+experiment,split,n,accuracy
+equal_probability_ensemble_3_seeds,train,6000,0.9408333333333333
+equal_probability_ensemble_3_seeds,dev,1000,0.648
+equal_probability_ensemble_3_seeds,test,1000,0.658

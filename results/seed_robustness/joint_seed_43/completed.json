@@ -1,0 +1,22 @@
+{
+  "config": {
+    "name": "joint_seed_43",
+    "kind": "joint",
+    "epochs": 500,
+    "keep_probability": 0.9,
+    "objective": "repository",
+    "seed": 43,
+    "learning_rate": 0.0001,
+    "batch_size": 512,
+    "shuffle_each_epoch": false
+  },
+  "data_sha256": "cec0ca867de0f6281b9fa38df3a7ae9120e6d3c234ef1d3c33befaecaadb269e",
+  "split_sha256": "19a51c0b5095262e0c030e8fb3b1d431cc6621737e3d354617cb73d89cfd206f",
+  "source_commit": "00b1802e24d1ab6fb3135b24a44976a51033ed24",
+  "implementation_sha256": "4b1853593bce0fa1a05f6a2b10eaf3b46d018ce089dc2c58f061347660ac11b2",
+  "torch": "2.11.0+cu128",
+  "best_epoch": 267,
+  "best_dev_score": 0.633,
+  "elapsed_seconds": 76.55347549999715,
+  "test_used_for_selection": false
+}

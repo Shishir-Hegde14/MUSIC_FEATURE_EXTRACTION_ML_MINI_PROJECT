@@ -1,0 +1,11 @@
+.venv/
+data/
+__pycache__/
+.ipynb_checkpoints/
+reference/
+results/smoke/
+results/**/pooled_audio.npz
+.env
+.env.*
+!.env.example
+*.log

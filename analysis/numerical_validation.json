@@ -1,0 +1,20 @@
+{
+  "source_commit": "00b1802e24d1ab6fb3135b24a44976a51033ed24",
+  "checks": {
+    "original_tf1_forward_gradient_adam": {
+      "encoding": 8.493661880493164e-07,
+      "reconstruction": 0.0,
+      "logits": 5.334615707397461e-06,
+      "loss": 0.0,
+      "gradient_max_absolute_error": 4.470348358154297e-08,
+      "ten_adam_updates_max_absolute_error": 3.5762786865234375e-07
+    },
+    "classical_pooling_max_error": 0.0,
+    "jazz_pooling_max_error": 0.0,
+    "metal_pooling_max_error": 0.0,
+    "pop_pooling_max_error": 0.0,
+    "repository_formula": true,
+    "paper_literal_formula": true
+  },
+  "passed": true
+}

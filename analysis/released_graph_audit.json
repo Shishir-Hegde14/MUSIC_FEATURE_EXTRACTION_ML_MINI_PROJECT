@@ -1,0 +1,284 @@
+{
+  "collections": {
+    "inputs_placeholder": [
+      "Placeholder:0"
+    ],
+    "loss": [
+      "add_11:0"
+    ],
+    "encoding": [
+      "Relu_1:0"
+    ],
+    "train_op": [
+      "Adam"
+    ],
+    "y_hat": [
+      "Add_10:0"
+    ],
+    "labels_placeholder": [
+      "Placeholder_1:0"
+    ],
+    "decoding": [
+      "Relu_3:0"
+    ]
+  },
+  "forward": [
+    {
+      "name": "Add",
+      "op": "Add",
+      "inputs": [
+        "MatMul",
+        "b1_encoder/read"
+      ]
+    },
+    {
+      "name": "Sigmoid",
+      "op": "Sigmoid",
+      "inputs": [
+        "Add"
+      ]
+    },
+    {
+      "name": "Add_1",
+      "op": "Add",
+      "inputs": [
+        "MatMul_1",
+        "b2_encoder/read"
+      ]
+    },
+    {
+      "name": "Tanh",
+      "op": "Tanh",
+      "inputs": [
+        "Add_1"
+      ]
+    },
+    {
+      "name": "dropout/random_uniform/mul",
+      "op": "Mul",
+      "inputs": [
+        "dropout/random_uniform/RandomUniform",
+        "dropout/random_uniform/sub"
+      ]
+    },
+    {
+      "name": "dropout/random_uniform",
+      "op": "Add",
+      "inputs": [
+        "dropout/random_uniform/mul",
+        "dropout/random_uniform/min"
+      ]
+    },
+    {
+      "name": "dropout/add",
+      "op": "Add",
+      "inputs": [
+        "keep_prob",
+        "dropout/random_uniform"
+      ]
+    },
+    {
+      "name": "dropout/mul",
+      "op": "Mul",
+      "inputs": [
+        "dropout/div",
+        "dropout/Floor"
+      ]
+    },
+    {
+      "name": "Add_2",
+      "op": "Add",
+      "inputs": [
+        "MatMul_2",
+        "b3_encoder/read"
+      ]
+    },
+    {
+      "name": "Relu",
+      "op": "Relu",
+      "inputs": [
+        "Add_2"
+      ]
+    },
+    {
+      "name": "Add_3",
+      "op": "Add",
+      "inputs": [
+        "MatMul_3",
+        "b4_encoder/read"
+      ]
+    },
+    {
+      "name": "Relu_1",
+      "op": "Relu",
+      "inputs": [
+        "Add_3"
+      ]
+    },
+    {
+      "name": "Add_4",
+      "op": "Add",
+      "inputs": [
+        "MatMul_4",
+        "b1_decoder/read"
+      ]
+    },
+    {
+      "name": "Sigmoid_1",
+      "op": "Sigmoid",
+      "inputs": [
+        "Add_4"
+      ]
+    },
+    {
+      "name": "Add_5",
+      "op": "Add",
+      "inputs": [
+        "MatMul_5",
+        "b2_decoder/read"
+      ]
+    },
+    {
+      "name": "Sigmoid_2",
+      "op": "Sigmoid",
+      "inputs": [
+        "Add_5"
+      ]
+    },
+    {
+      "name": "dropout_1/random_uniform/mul",
+      "op": "Mul",
+      "inputs": [
+        "dropout_1/random_uniform/RandomUniform",
+        "dropout_1/random_uniform/sub"
+      ]
+    },
+    {
+      "name": "dropout_1/random_uniform",
+      "op": "Add",
+      "inputs": [
+        "dropout_1/random_uniform/mul",
+        "dropout_1/random_uniform/min"
+      ]
+    },
+    {
+      "name": "dropout_1/add",
+      "op": "Add",
+      "inputs": [
+        "keep_prob",
+        "dropout_1/random_uniform"
+      ]
+    },
+    {
+      "name": "dropout_1/mul",
+      "op": "Mul",
+      "inputs": [
+        "dropout_1/div",
+        "dropout_1/Floor"
+      ]
+    },
+    {
+      "name": "Add_6",
+      "op": "Add",
+      "inputs": [
+        "MatMul_6",
+        "b3_decoder/read"
+      ]
+    },
+    {
+      "name": "Relu_2",
+      "op": "Relu",
+      "inputs": [
+        "Add_6"
+      ]
+    },
+    {
+      "name": "Add_7",
+      "op": "Add",
+      "inputs": [
+        "MatMul_7",
+        "b4_decoder/read"
+      ]
+    },
+    {
+      "name": "Relu_3",
+      "op": "Relu",
+      "inputs": [
+        "Add_7"
+      ]
+    },
+    {
+      "name": "Add_8",
+      "op": "Add",
+      "inputs": [
+        "MatMul_8",
+        "b1_softmax/read"
+      ]
+    },
+    {
+      "name": "Tanh_1",
+      "op": "Tanh",
+      "inputs": [
+        "Add_8"
+      ]
+    },
+    {
+      "name": "Add_9",
+      "op": "Add",
+      "inputs": [
+        "MatMul_9",
+        "b2_softmax/read"
+      ]
+    },
+    {
+      "name": "Tanh_2",
+      "op": "Tanh",
+      "inputs": [
+        "Add_9"
+      ]
+    },
+    {
+      "name": "Add_10",
+      "op": "Add",
+      "inputs": [
+        "MatMul_10",
+        "b3_softmax/read"
+      ]
+    },
+    {
+      "name": "Mean",
+      "op": "Mean",
+      "inputs": [
+        "Pow",
+        "Const"
+      ]
+    },
+    {
+      "name": "mul",
+      "op": "Mul",
+      "inputs": [
+        "mul/x",
+        "softmax_cross_entropy_with_logits/Reshape_2"
+      ]
+    },
+    {
+      "name": "Mean_1",
+      "op": "Mean",
+      "inputs": [
+        "mul",
+        "Const_1"
+      ]
+    },
+    {
+      "name": "add_11",
+      "op": "Add",
+      "inputs": [
+        "Mean",
+        "Mean_1"
+      ]
+    }
+  ],
+  "mul/x": 0.10000000149011612,
+  "Adam/learning_rate": 9.999999747378752e-05,
+  "Adam/epsilon": 9.99999993922529e-09
+}
