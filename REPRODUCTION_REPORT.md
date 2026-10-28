@@ -59,8 +59,9 @@ commit `00b1802e24d1ab6fb3135b24a44976a51033ed24`.
 3. **Dropout has specific locations.** It follows the 192-D encoder tanh and the 192-D decoder
    sigmoid. The released training loop uses keep 0.8; the PDF says final keep 0.9. Both are run.
 4. **The PDF's loss differs from the released objective.** The source uses `MSE + 0.1 * CE`.
-   The PDF's literal equation is `0.9 * SSE + 0.1 * CE`. Since `SSE = 500 * MSE`, the relative
-   reconstruction/classification weight differs by **4,500**. These are separately named runs.
+   The PDF's literal equation is `0.9 * SSE + 0.1 * CE`. Since `SSE = 500 * MSE`, reconstruction
+   outweighs classification **4,500 : 1** in the PDF but **10 : 1** in the code, a **450-fold**
+   difference in relative weight. These are separately named runs.
 5. **The source resolves baseline settings.** Adam LR 1e-4, batch size 512, 200 epochs differs from
    the earlier notebook's LR 1e-3, batch size 32, 50 epochs. Thus the baseline scores are not
    evidence of a regression under an identical training protocol.
