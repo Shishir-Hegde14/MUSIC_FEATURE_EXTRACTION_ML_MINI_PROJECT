@@ -6,9 +6,13 @@ and its released implementation. All training and evaluation completed locally o
 
 The main single model achieved **63.6% test accuracy**, compared with the paper's **65.3%** and
 the earlier notebook's **42.3%**. A separately labelled, equal-probability ensemble of three fixed
-initialization seeds achieved **65.8%**. The ensemble clears the numerical reference by five
-examples out of 1,000; this does not establish statistically better performance, and it is not
-the paper's single-model experiment.
+training seeds achieved **65.8%**. The ensemble clears the numerical reference by five
+examples out of 1,000. Its approximate 95% interval (62.9%–68.7%) contains 65.3%, so this is a
+tie rather than better performance, and it is not the paper's single-model experiment.
+
+The classification numbers replicate closely, but the paper's central mechanism does not: the
+decoder outputs all zeros in every run, so the reconstruction objective contributes nothing (see
+"Reconstruction is a material limitation" below).
 
 ## Measured results
 
@@ -33,8 +37,9 @@ The primary single model improves the earlier joint-model test result by **21.3 
 Its final epoch, without development checkpoint selection, gives **97.08% / 62.10% / 62.20%**
 train/dev/test. Both final and selected checkpoint results are preserved in `all_metrics.csv`.
 
-The ensemble combines the development-selected checkpoints for initialization seeds 42, 43 and 44.
-Their individual test accuracies are **63.6%, 62.0% and 62.4%**, respectively, with mean **62.67%**
+The ensemble combines the development-selected checkpoints for training seeds 42, 43 and 44.
+Each seed sets both the weight initialization and the one-time training-order shuffle, so the
+spread reflects both sources of variation. Their individual test accuracies are **63.6%, 62.0% and 62.4%**, respectively, with mean **62.67%**
 and sample standard deviation **0.83 percentage points**. No highest-test seed replaces the primary
 result. The ensemble was added after inspecting these individual runs; it is an exploratory
 extension on the existing held-out split, not a fresh independent confirmation test.
@@ -111,12 +116,40 @@ The ensemble's macro F1 is **0.6571**. Test class supports are 259 classical, 25
 and 242 pop. The complete dataset is balanced; the source-style shuffled split is not stratified.
 All comparisons use genre names, avoiding the earlier notebook's pop/metal label-order difference.
 
+**The paper's Table 2 may not be a test-set table.** Its four recalls average to **0.641**. With
+near-balanced classes, mean recall is close to accuracy, and 0.641 is exactly the paper's
+*development* accuracy rather than its 65.3% test accuracy. The per-genre comparison above is
+therefore approximate.
+
+The primary model's confusion matrix (rows true, columns predicted; classical, jazz, metal, pop):
+
+| | classical | jazz | metal | pop |
+|---|---:|---:|---:|---:|
+| classical | 191 | 59 | 9 | 0 |
+| jazz | 48 | 143 | 38 | 24 |
+| metal | 4 | 37 | 147 | 58 |
+| pop | 6 | 27 | 54 | 155 |
+
+As in the paper, metal and pop are mistaken for each other (58 and 54). Jazz, however, is
+confused in both directions with classical (48/59) and with metal (38/37), more than the paper's
+discussion suggests.
+
 ## Reconstruction is a material limitation
 
 The primary model's reconstructed values are all zero in the inspected examples. Its complete test
 reconstruction MSE is **0.01125987**, equal to the MSE of the all-zero predictor. The released
 authors' joint checkpoint exhibits the same behavior on its saved development inputs: reconstruction
 MSE **0.01143465**, also equal to the zero predictor.
+
+The vanilla autoencoder shows the same zero-MSE on every split, and its development-selected
+epoch is 6. Its 64-D codes are tiny (about ±0.1 in PCA) and show no genre structure.
+
+Because the reconstruction term is constant once the decoder outputs zero, it sends no gradient
+to the encoder. The joint model is then effectively a deep 500→…→4 classifier. Its gain over the
+two-layer baseline comes from depth and training, not from combining reconstruction with
+classification. The 64-D bottleneck plot (Figure 5) also does not show the clean separation the
+paper describes: pop and metal spread along one direction, while classical and jazz stay packed
+together. The 4-D logits (Figure 6) do separate classical from pop/metal.
 
 Thus classification accuracy and separable embedding plots do not establish successful waveform
 reconstruction. The final ReLU output is retained for source fidelity, with this collapse exposed
@@ -171,9 +204,14 @@ run is saved separately and never mixed into the full results. Full experiment c
 configuration, implementation, data and split fingerprints, the chosen development epoch and a
 `test_used_for_selection: false` field. Every classified example has a saved prediction CSV.
 
-Key outputs:
+Key outputs. The published repository contains only this report and the notebook. Running the
+notebook recreates every file under `results/`. The `analysis/` files, the helper scripts
+(`validate_reproduction.py`, `audit_reference.py`, `extract_ablation_results.py`) and the earlier
+supplied notebooks are kept in the author's local project and are not published here. Their key
+numbers are quoted in this report.
 
-- `results/source_grounded/all_metrics.csv`: every main model, split and checkpoint.
+- `results/source_grounded/all_metrics.csv`: every main model, split and checkpoint. A loss term
+  the model does not have (MSE for the baseline, cross-entropy for the vanilla autoencoder) is blank.
 - `results/source_grounded/paper_comparison.csv` and `per_class_comparison.csv`: paper comparisons.
 - `results/source_grounded/figures/`: raw PCA, architecture, learning curves, confusion matrices,
   bottleneck PCA, logit PCA and reconstruction sanity plot.
